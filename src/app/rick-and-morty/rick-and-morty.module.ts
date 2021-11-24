@@ -4,24 +4,22 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { RickAndMortyRoutingModule } from './rick-and-morty-routing.module';
 import { HomeComponent } from './pages/home/home.component';
-import { CharactersComponent } from './pages/characters/characters.component';
 import { LocationsComponent } from './pages/locations/locations.component';
 import { EpisodesComponent } from './pages/episodes/episodes.component';
-import { MenuComponent } from './shared/components/menu/menu.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    CharactersComponent,
     LocationsComponent,
-    EpisodesComponent,
-    MenuComponent
+    EpisodesComponent
   ],
   imports: [
     CommonModule,
     RickAndMortyRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ]
 })
 export class RickAndMortyModule { }

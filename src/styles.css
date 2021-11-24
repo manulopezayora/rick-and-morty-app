@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --primary-color: #1c9e8b;
+    --primary-color-ligth: #61FFE7;
+    --secondary-color: #42EBD1;
+    --contrast-color: #9E370D;
+    --contrast-color-ligth: #EB7342;
+    --clare-color: #fcfcfc;
+    --title-font: 'Patrick Hand', cursive;
+    --text-font: 'Ubuntu', sans-serif;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}

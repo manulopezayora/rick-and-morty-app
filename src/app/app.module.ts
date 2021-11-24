@@ -4,6 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RickAndMortyModule } from './rick-and-morty/rick-and-morty.module';
+import { SharedModule } from './shared/shared.module';
+
 
 @NgModule({
   declarations: [
@@ -12,6 +14,7 @@ import { RickAndMortyModule } from './rick-and-morty/rick-and-morty.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    SharedModule,
     RickAndMortyModule
   ],
   providers: [],

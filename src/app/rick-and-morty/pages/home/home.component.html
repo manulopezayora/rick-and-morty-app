@@ -1,5 +1,13 @@
-<app-menu></app-menu>
+<app-search-input></app-search-input>
 
-<router-outlet></router-outlet>
-
-
+<div class="character-card" *ngFor="let character of characterData">
+    <section class="character-card__image-box">
+        <small class="image-box__status">{{ character.status }}</small>
+        <img class="image-box__image" [src]="character.image" [alt]="character.name">
+    </section>
+    <h2 class="character-card__name">{{character.name}}</h2>
+    <section class="character-card__last-location">
+        <h3 class="last-location__title">Last location</h3>
+        <p class="last-location__name">{{ character.location.name }}</p>
+    </section>
+</div>

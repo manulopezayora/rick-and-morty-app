@@ -1,0 +1,22 @@
+<header class="header">
+    <h1 class="header__title">Rick & Morty <span class="title__accent">Wiki</span></h1>
+    <div class="header__burger" (click)="pushMenu()">
+        <div class="burger__bar" [ngClass]="{'menu-active': menuIsShown}"></div>
+        <div class="burger__bar" [ngClass]="{'menu-active': menuIsShown}"></div>
+        <div class="burger__bar" [ngClass]="{'menu-active': menuIsShown}"></div>
+    </div>
+</header>
+
+<nav class="nav" *ngIf="menuIsShown">
+    <ul class="nav__menu">
+        <li class="menu__item item-active">
+            <a class="item__link">Characters</a>
+        </li>
+        <li class="menu__item">
+            <a class="item__link">Locations</a>
+        </li>
+        <li class="menu__item">
+            <a class="item__link">Episodes</a>
+        </li>
+    </ul>
+</nav>
