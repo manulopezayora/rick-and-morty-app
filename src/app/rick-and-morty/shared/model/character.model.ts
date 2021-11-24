@@ -1,13 +1,13 @@
 export type Character = {
-    info:    Info;
-    results: CharacterResult[];
+    info?:    CharacterInfo;
+    results?: CharacterResult[];
 }
 
-export type Info = {
+export type CharacterInfo = {
     count: number;
     pages: number;
     next:  string;
-    prev:  null;
+    prev:  string;
 }
 
 export type CharacterResult = {

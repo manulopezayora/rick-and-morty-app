@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs';
 import { RickMortyService } from '../../services/rick-morty.service';
-import { Character, CharacterResult } from '../../shared/model/character.model';
+import { Character, CharacterInfo, CharacterResult } from '../../shared/model/character.model';
 
 @Component({
   selector: 'app-home',
@@ -11,12 +11,14 @@ import { Character, CharacterResult } from '../../shared/model/character.model';
 })
 export class HomeComponent implements OnInit {
 
-  public characterData: CharacterResult[];
+  public characterData: Character;
+  public paginationNumbers: number[];
 
   constructor(
     private rickMortyService: RickMortyService
   ) { 
-    this.characterData = [];
+    this.characterData = {};
+    this.paginationNumbers = [];
   }
 
   ngOnInit(): void {
@@ -29,12 +31,13 @@ export class HomeComponent implements OnInit {
 
   private getAllCharactersData(): void {
     this.rickMortyService.getAllCharacters().pipe(take(1)).subscribe(
-      (characters: Character) => {
-        const { results } = characters;
-        this.characterData = results;
-      },
-      (error: HttpErrorResponse) => {
-        console.log(error.status)
+      {
+        next: (characters: Character) => {
+          this.characterData = characters;
+        },
+        error: (error: HttpErrorResponse) => {
+          console.log(error.status)
+        }
       });
   }
 }

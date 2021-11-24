@@ -7,13 +7,17 @@ import { HomeComponent } from './pages/home/home.component';
 import { LocationsComponent } from './pages/locations/locations.component';
 import { EpisodesComponent } from './pages/episodes/episodes.component';
 import { SharedModule } from '../shared/shared.module';
+import { CharacterCardComponent } from './components/character-card/character-card.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
     LocationsComponent,
-    EpisodesComponent
+    EpisodesComponent,
+    CharacterCardComponent,
+    PaginationComponent
   ],
   imports: [
     CommonModule,
