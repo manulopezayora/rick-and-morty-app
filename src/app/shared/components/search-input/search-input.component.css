@@ -20,7 +20,7 @@
 .search__button {
     padding: .4rem .8rem;
     font-size: 1rem;
-    color: var(--clare-color);
+    color: var(--claire-color);
     background-color: var(--primary-color);
     border: 2px solid var(--primary-color);
     border-top-right-radius: .4rem;

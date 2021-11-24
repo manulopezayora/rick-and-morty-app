@@ -9,6 +9,7 @@ import { EpisodesComponent } from './pages/episodes/episodes.component';
 import { SharedModule } from '../shared/shared.module';
 import { CharacterCardComponent } from './components/character-card/character-card.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { CharacterDetailComponent } from './pages/character-detail/character-detail.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     LocationsComponent,
     EpisodesComponent,
     CharacterCardComponent,
-    PaginationComponent
+    PaginationComponent,
+    CharacterDetailComponent
   ],
   imports: [
     CommonModule,

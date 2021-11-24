@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Character, CharacterResult } from '../../shared/model/character.model';
 
 @Component({
   selector: 'app-character-card',
@@ -7,11 +9,28 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CharacterCardComponent implements OnInit {
 
-  @Input() characterData: any;
+  @Input() characterData: Character;
 
-  constructor() { }
+  public statusColor: string;
+  public alive: boolean;
+  public dead: boolean;
+  public unknown: boolean;
+
+  constructor(
+    private router: Router
+  ) {
+    this.characterData = {};
+    this.statusColor = '';
+    this.alive = false;
+    this.dead = false;
+    this.unknown = false;
+  }
 
   ngOnInit(): void {
   }
+
+  public getDetail(character: CharacterResult): void {
+    this.router.navigate(['character/' + character.id]);
+  } 
 
 }

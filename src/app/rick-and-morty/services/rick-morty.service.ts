@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Character } from '../shared/model/character.model';
+import { Character, CharacterResult } from '../shared/model/character.model';
 import { generateQueryStrings } from '../../shared/utils/generateQueryStrings'
 
 @Injectable({
@@ -24,5 +24,9 @@ export class RickMortyService {
     return this.http.get<Character>(`${this.baseUrl}/character`, {
       params: generateQueryStrings({ page })
     });
+  }
+
+  public getCharacterDetail(id: string): Observable<CharacterResult> {
+    return this.http.get<CharacterResult>(`${this.baseUrl}/character/${id}`);
   }
 }

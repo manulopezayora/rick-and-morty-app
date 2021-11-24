@@ -1,0 +1,19 @@
+<section class="detail-card" *ngIf="characterData">
+    <div class="detail-card__image">
+        <img [src]="characterData.image" [alt]="characterData.name" />
+    </div>
+    <div class="detail-card__resume">
+        <h2 class="resume__title">{{ characterData.name }}</h2>
+        <p class="resume__text"><span class="resume__subtitle">Specie:</span> {{ characterData.species || 'No specie' }}</p>
+        <p class="resume__text"><span class="resume__subtitle">Gender:</span> {{ characterData.gender || 'No gender' }}</p>
+        <p class="resume__text"><span class="resume__subtitle">Created date:</span> {{ characterData.created | date }}</p>
+        <p class="resume__text"><span class="resume__subtitle">Origin location:</span> {{ characterData.origin.name || 'No origin location' }}</p>
+        <p class="resume__text"><span class="resume__subtitle">Status:</span> {{ characterData.status  || 'No type' }}</p>
+        <p class="resume__text"><span class="resume__subtitle">Type:</span> {{ characterData.type || 'No type' }}</p>
+    </div>
+</section>
+
+<section class="go-back">
+    <a class="go-back__button" [routerLink]="['/']">Go to list</a> 
+</section>
+

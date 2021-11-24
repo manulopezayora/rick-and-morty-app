@@ -11,14 +11,16 @@ import { Character, CharacterInfo } from '../../shared/model/character.model';
 })
 export class PaginationComponent implements OnInit {
 
-  @Input() pagination: any;
+  @Input() characterData: Character;
 
   constructor(
     private rickMortyService: RickMortyService
-  ) { }
+  ) {
+    this.characterData = {};
+   }
 
   ngOnInit(): void {
-    console.log(this.pagination)
+    console.log(this.characterData)
   }
 
   public getCharactersByPage(page: number) {
