@@ -1,0 +1,16 @@
+.footer {
+    width: 100%;
+    background-color: var(--primary-color);
+    text-align: center;
+}
+
+.footer__text {
+    margin: 0;
+    padding: .8rem 1rem;
+    font-family: var(--text-font);
+    color: var(--claire-color);
+}
+
+.footer__link {
+    color: var(--claire-color);
+}

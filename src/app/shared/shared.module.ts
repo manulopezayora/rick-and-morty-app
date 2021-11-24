@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
 import { SearchInputComponent } from './components/search-input/search-input.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 
@@ -10,7 +11,8 @@ import { TruncatePipe } from './pipes/truncate.pipe';
   declarations: [
     HeaderComponent,
     SearchInputComponent,
-    TruncatePipe
+    TruncatePipe,
+    FooterComponent
   ],
   imports: [
     CommonModule
@@ -18,7 +20,8 @@ import { TruncatePipe } from './pipes/truncate.pipe';
   exports: [
     HeaderComponent,
     SearchInputComponent,
-    TruncatePipe
+    TruncatePipe,
+    FooterComponent
   ]
 })
 export class SharedModule { }
