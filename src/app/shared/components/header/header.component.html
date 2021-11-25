@@ -9,14 +9,14 @@
 
 <nav class="nav" *ngIf="menuIsShown">
     <ul class="nav__menu">
-        <li class="menu__item item-active">
-            <a class="item__link">Characters</a>
+        <li class="menu__item" routerLinkActive="item-active">
+            <a class="item__link" [routerLink]="['character']">Characters</a>
         </li>
-        <li class="menu__item">
-            <a class="item__link">Locations</a>
+        <li class="menu__item"  routerLinkActive="item-active">
+            <a class="item__link" [routerLink]="['location']">Locations</a>
         </li>
-        <li class="menu__item">
-            <a class="item__link">Episodes</a>
+        <li class="menu__item"  routerLinkActive="item-active">
+            <a class="item__link" [routerLink]="['episodes']">Episodes</a>
         </li>
     </ul>
 </nav>

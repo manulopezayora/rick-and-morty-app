@@ -72,4 +72,5 @@
 .item__link {
     font-size: 1.2rem;
     color: var(--claire-color);
+    text-decoration: none;
 }
