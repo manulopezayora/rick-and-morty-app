@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   public characterData: Character;
   public actualPage: number;
   public paginationNumbers!: number;
+  public haveFilters: filtersModel;
 
   constructor(
     private rickMortyService: RickMortyService,
@@ -23,6 +24,7 @@ export class HomeComponent implements OnInit {
     this.characterData = {};
     this.actualPage = 1;
     this.paginationNumbers = 0;
+    this.haveFilters = {};
   }
 
   ngOnInit(): void {
@@ -43,21 +45,56 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  public searchCharacter(character: string) {
+    this.actualPage = 1;
+    this.getCharactersByName(character);
+  }
+
   private initialize(): void {
     this.getAllCharactersData();
   }
 
-  public getCharactersByPage(page: number) {
-    this.rickMortyService.getCharactersByPage(page).pipe(take(1)).subscribe(
+  private getCharactersByName(name: string) {
+    this.haveFilters.name = name;
+    this.rickMortyService.getCharactersByName(name).pipe(take(1)).subscribe(
       {
         next: (characters: Character) => {
           this.characterData = characters;
+          this.paginationNumbers = characters.info?.pages || 0;
         },
         error: (error: HttpErrorResponse) => {
           console.log(error.status)
         }
       }
     )
+  }
+
+  private getCharactersByPage(page: number) {
+    if (this.haveFilters.name) {
+      this.rickMortyService.getCharactersByFilters( page, this.haveFilters.name).pipe(take(1)).subscribe(
+        {
+          next: (characters: Character) => {
+            this.characterData = characters;
+            this.paginationNumbers = characters.info?.pages || 0;
+          },
+          error: (error: HttpErrorResponse) => {
+            console.log(error.status)
+          }
+        }
+      )
+    } else {
+      this.rickMortyService.getCharactersByPage(page).pipe(take(1)).subscribe(
+        {
+          next: (characters: Character) => {
+            this.characterData = characters;
+            this.paginationNumbers = characters.info?.pages || 0;
+          },
+          error: (error: HttpErrorResponse) => {
+            console.log(error.status)
+          }
+        }
+      )
+    }
   }
 
   private getAllCharactersData(): void {
@@ -72,4 +109,8 @@ export class HomeComponent implements OnInit {
         }
       });
   }
+}
+
+type filtersModel = {
+  name?: string;
 }

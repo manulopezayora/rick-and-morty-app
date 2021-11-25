@@ -20,9 +20,21 @@ export class RickMortyService {
     return this.http.get<Character>(`${this.baseUrl}/character`);
   }
 
+  public getCharactersByName(name: string): Observable<Character> {
+    return this.http.get<Character>(`${this.baseUrl}/character`, {
+      params: generateQueryStrings({ name })
+    });
+  }
+
   public getCharactersByPage(page: number): Observable<Character> {
     return this.http.get<Character>(`${this.baseUrl}/character`, {
       params: generateQueryStrings({ page })
+    });
+  }
+
+  public getCharactersByFilters(page: number, name: string): Observable<Character> {
+    return this.http.get<Character>(`${this.baseUrl}/character`, {
+      params: generateQueryStrings({ page, name })
     });
   }
 

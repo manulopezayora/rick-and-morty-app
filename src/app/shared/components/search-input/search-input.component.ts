@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-search-input',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchInputComponent implements OnInit {
 
-  constructor() { }
+  @Output() characterEvent;
+
+  public character = new FormControl('', [Validators.required]);
+
+  constructor() {
+    this.characterEvent = new EventEmitter();
+   }
 
   ngOnInit(): void {
+  }
+
+  public searchCharacter(): void {
+    this.character.valid ? this.characterEvent.emit(this.character.value) : console.log('invalid');
   }
 
 }

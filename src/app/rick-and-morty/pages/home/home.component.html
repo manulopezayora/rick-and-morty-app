@@ -1,4 +1,4 @@
-<app-search-input></app-search-input>
+<app-search-input (characterEvent)="searchCharacter($event)"></app-search-input>
 
 <app-character-card [characterData]="characterData"></app-character-card>
 
