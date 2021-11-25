@@ -17,7 +17,7 @@ export class RickMortyService {
   ) { }
 
   public getAllCharacters(): Observable<Character> {
-    return this.http.get<Character>(`${this.baseUrl}/character`)
+    return this.http.get<Character>(`${this.baseUrl}/character`);
   }
 
   public getCharactersByPage(page: number): Observable<Character> {

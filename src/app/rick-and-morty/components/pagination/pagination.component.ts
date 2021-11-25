@@ -13,6 +13,8 @@ export class PaginationComponent implements OnInit {
 
   @Input() characterData: Character;
 
+  public paginationNumbers!: number[];
+
   constructor(
     private rickMortyService: RickMortyService
   ) {
@@ -20,7 +22,8 @@ export class PaginationComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    console.log(this.characterData)
+    this.paginationNumbers = this.setPaginationNumbers(this.characterData);
+    console.log(this.paginationNumbers)
   }
 
   public getCharactersByPage(page: number) {
@@ -36,9 +39,10 @@ export class PaginationComponent implements OnInit {
     )
   }
 
-  private setPaginationNumbers(pagesIterator: CharacterInfo){
+  private setPaginationNumbers(pagesIterator: Character){
     let totalNumberArray: number[] = [];
-    for (let i = 0; i < pagesIterator.pages; i++) {
+    const counter = pagesIterator.info?.pages || 0;
+    for (let i = 0; i < counter; i++) {
       totalNumberArray.push(i + 1);
     }
     return totalNumberArray;

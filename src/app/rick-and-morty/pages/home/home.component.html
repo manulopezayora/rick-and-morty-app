@@ -1,7 +1,9 @@
 <app-search-input></app-search-input>
 
-<main class="main-layout">
-    <app-character-card [characterData]="characterData" ></app-character-card>
-</main>
+<app-character-card [characterData]="characterData"></app-character-card>
 
-<app-pagination [characterData]="characterData" ></app-pagination>
+<div class="pagination">
+    <button class="pagination__button" [disabled]="actualPage === 1" (click)="previousPage()" >Prev</button>
+    <button class="pagination__number">{{ actualPage }}</button>
+    <button class="pagination__button" [disabled]="actualPage === paginationNumbers" (click)="nextPage()">Next</button>
+</div>
