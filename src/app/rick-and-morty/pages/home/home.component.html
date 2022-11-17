@@ -1,9 +1,11 @@
 <app-search-input (characterEvent)="searchCharacter($event)"></app-search-input>
 
-<app-character-card [characterData]="characterData"></app-character-card>
+<main class="main-layout">
+    <app-character-card *ngFor="let character of (characterData$ | async)?.results" [characterData]="character"></app-character-card>
+</main>
 
-<div class="pagination">
+<!-- <div class="pagination">
     <button class="pagination__button" [disabled]="actualPage === 1" (click)="previousPage()" >Prev</button>
     <button class="pagination__number">{{ actualPage }}</button>
-    <button class="pagination__button" [disabled]="actualPage === paginationNumbers" (click)="nextPage()">Next</button>
-</div>
+    <button class="pagination__button" [disabled]="actualPage === (characterData$ | async)?.info?.pages" (click)="nextPage()">Next</button>
+</div> -->

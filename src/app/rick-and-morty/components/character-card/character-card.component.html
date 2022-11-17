@@ -1,13 +1,13 @@
-<main class="main-layout">
-    <div class="character-card" *ngFor="let character of characterData.results" (click)="getDetail(character)">
-        <section class="character-card__image-box">
-            <small class="image-box__status" [ngClass]="character.status">{{ character.status | titlecase }}</small>
-            <img class="image-box__image" [src]="character.image" [alt]="character.name">
-        </section>
-        <h2 class="character-card__name">{{ character.name }}</h2>
-        <section class="character-card__last-location">
-            <h3 class="last-location__title">Last location</h3>
-            <p class="last-location__name">{{ character.location.name }}</p>
-        </section>
-    </div>
-</main>
+<div class="character-card" (click)="getDetail(characterData)">
+    <section class="character-card__image-box">
+        <small class="image-box__status" [ngClass]="characterData.status">{{ characterData.status | titlecase }}</small>
+        <img class="image-box__image" [src]="characterData.image" [alt]="characterData.name">
+    </section>
+    <h2 class="character-card__name">{{ characterData.name }}</h2>
+    <section class="character-card__last-location">
+        <h3 class="last-location__title">Last location</h3>
+        <p class="last-location__name">{{ characterData.location.name }}</p>
+    </section>
+</div>
+
+

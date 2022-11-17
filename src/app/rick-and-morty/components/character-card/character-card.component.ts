@@ -9,7 +9,7 @@ import { Character, CharacterResult } from '../../shared/model/character.model';
 })
 export class CharacterCardComponent implements OnInit {
 
-  @Input() characterData: Character;
+  @Input() characterData: CharacterResult;
 
   public statusColor: string;
   public alive: boolean;
@@ -19,7 +19,6 @@ export class CharacterCardComponent implements OnInit {
   constructor(
     private router: Router
   ) {
-    this.characterData = {};
     this.statusColor = '';
     this.alive = false;
     this.dead = false;

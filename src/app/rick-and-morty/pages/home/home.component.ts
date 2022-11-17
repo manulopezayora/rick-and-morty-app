@@ -1,9 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
-import { take } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { RickMortyService } from '../../services/rick-morty.service';
-import { Character, CharacterInfo, CharacterResult } from '../../shared/model/character.model';
+import { Character } from '../../shared/model/character.model';
 
 @Component({
   selector: 'app-home',
@@ -12,16 +11,14 @@ import { Character, CharacterInfo, CharacterResult } from '../../shared/model/ch
 })
 export class HomeComponent implements OnInit {
 
-  public characterData: Character;
+  public characterData$: Observable<Character>;
   public actualPage: number;
   public paginationNumbers!: number;
   public haveFilters: filtersModel;
 
   constructor(
-    private rickMortyService: RickMortyService,
-    private route: ActivatedRoute
-  ) { 
-    this.characterData = {};
+    private rickMortyService: RickMortyService
+  ) {
     this.actualPage = 1;
     this.paginationNumbers = 0;
     this.haveFilters = {};
@@ -45,7 +42,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  public searchCharacter(character: string) {
+  public searchCharacter(character: string): void {
     this.actualPage = 1;
     this.getCharactersByName(character);
   }
@@ -54,60 +51,35 @@ export class HomeComponent implements OnInit {
     this.getAllCharactersData();
   }
 
-  private getCharactersByName(name: string) {
+  private getCharactersByName(name: string):void {
     this.haveFilters.name = name;
-    this.rickMortyService.getCharactersByName(name).pipe(take(1)).subscribe(
-      {
-        next: (characters: Character) => {
-          this.characterData = characters;
-          this.paginationNumbers = characters.info?.pages || 0;
-        },
-        error: (error: HttpErrorResponse) => {
-          console.log(error.status)
-        }
-      }
-    )
+    this.characterData$ =  this.rickMortyService.getCharactersByName(name);
+    // this.rickMortyService.getCharactersByName(name).pipe(take(1)).subscribe(
+    //   {
+    //     next: (characters: Character) => {
+    //       this.characterData = characters;
+    //       this.paginationNumbers = characters.info?.pages || 0;
+    //     },
+    //     error: (error: HttpErrorResponse) => {
+    //       console.log(error.status)
+    //     }
+    //   }
+    // )
   }
 
-  private getCharactersByPage(page: number) {
+  private getCharactersByPage(page: number): void {
     if (this.haveFilters.name) {
-      this.rickMortyService.getCharactersByFilters( page, this.haveFilters.name).pipe(take(1)).subscribe(
-        {
-          next: (characters: Character) => {
-            this.characterData = characters;
-            this.paginationNumbers = characters.info?.pages || 0;
-          },
-          error: (error: HttpErrorResponse) => {
-            console.log(error.status)
-          }
-        }
-      )
+      this.characterData$ = this.rickMortyService.getCharactersByFilters( page, this.haveFilters.name);
+      // this.paginationNumbers = characters.info?.pages || 0;
     } else {
-      this.rickMortyService.getCharactersByPage(page).pipe(take(1)).subscribe(
-        {
-          next: (characters: Character) => {
-            this.characterData = characters;
-            this.paginationNumbers = characters.info?.pages || 0;
-          },
-          error: (error: HttpErrorResponse) => {
-            console.log(error.status)
-          }
-        }
-      )
+      this.characterData$ = this.rickMortyService.getCharactersByPage(page);
+      // this.paginationNumbers = characters.info?.pages || 0;
     }
   }
 
   private getAllCharactersData(): void {
-    this.rickMortyService.getAllCharacters().pipe(take(1)).subscribe(
-      {
-        next: (characters: Character) => {
-          this.characterData = characters;
-          this.paginationNumbers = characters.info?.pages || 0;
-        },
-        error: (error: HttpErrorResponse) => {
-          console.log(error.status)
-        }
-      });
+    this.characterData$ = this.rickMortyService.getAllCharacters();
+    // this.paginationNumbers = characters.info?.pages || 0;
   }
 }
 
