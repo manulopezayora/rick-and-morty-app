@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Character, CharacterResult } from '../shared/model/character.model';
+import { Character, CharacterResult } from '../model/character.model';
 import { generateQueryStrings } from '../../shared/utils/generateQueryStrings'
 
 @Injectable({

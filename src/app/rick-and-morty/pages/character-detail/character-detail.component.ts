@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs';
 import { RickMortyService } from '../../services/rick-morty.service';
-import { CharacterResult } from '../../shared/model/character.model';
+import { CharacterResult } from '../../model/character.model';
 
 @Component({
   selector: 'app-character-detail',

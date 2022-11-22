@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Character, CharacterResult } from '../../shared/model/character.model';
+import { Character, CharacterResult } from '../../model/character.model';
 
 @Component({
   selector: 'app-character-card',

@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { take } from 'rxjs';
 import { RickMortyService } from '../../services/rick-morty.service';
-import { Character, CharacterInfo } from '../../shared/model/character.model';
+import { Character, CharacterInfo } from '../../model/character.model';
 
 @Component({
   selector: 'app-pagination',
