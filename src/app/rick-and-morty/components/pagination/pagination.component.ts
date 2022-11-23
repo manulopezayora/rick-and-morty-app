@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Character } from '../../model/character.model';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-pagination',
