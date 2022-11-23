@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RickMortyService } from '../../services/rick-morty.service';
 import { Character } from '../../model/character.model';
 import { filtersModel } from '../../model/filter.model';
+import { PaginationComponent } from '../../components/pagination/pagination.component';
 
 @Component({
   selector: 'app-home',
@@ -11,37 +12,32 @@ import { filtersModel } from '../../model/filter.model';
 })
 export class HomeComponent implements OnInit {
 
+  @ViewChild(PaginationComponent) paginationComponent!: PaginationComponent;
+
   public characterData$: Observable<Character>;
-  public actualPage: number;
   public haveFilters: filtersModel;
+  public currentPage: number;
 
   constructor(
     private rickMortyService: RickMortyService
-  ) {
-    this.actualPage = 1;
-  }
+  ) {}
 
   ngOnInit(): void {
     this.initialize();
   }
 
-  public previousPage(): void {
-    if (this.actualPage > 1) {
-      this.actualPage--; 
-      this.getCharactersByPage(this.actualPage);
-    }
-  }
-
-  public nextPage(): void {
-    if (this.actualPage >= 1) {
-      this.actualPage++; 
-      this.getCharactersByPage(this.actualPage);
-    }
-  }
-
   public searchCharacter(character: string): void {
-    this.actualPage = 1;
+    this.currentPage = 1;
     this.getCharactersByName(character);
+  }
+
+  public getCharactersByPage(pageNumber: number): void {
+    if (this.haveFilters && this.haveFilters.name) {
+      this.characterData$ = this.rickMortyService.getCharactersByFilters(pageNumber, this.haveFilters.name);
+    } else {
+      this.characterData$ = this.rickMortyService.getCharactersByPage(pageNumber);
+    }
+    this.currentPage = pageNumber;
   }
 
   private initialize(): void {
@@ -49,16 +45,8 @@ export class HomeComponent implements OnInit {
   }
 
   private getCharactersByName(name: string):void {
-    this.haveFilters.name = name;
+    this.haveFilters = { name };
     this.characterData$ =  this.rickMortyService.getCharactersByName(name);
-  }
-
-  private getCharactersByPage(page: number): void {
-    if (this.haveFilters.name) {
-      this.characterData$ = this.rickMortyService.getCharactersByFilters( page, this.haveFilters.name);
-    } else {
-      this.characterData$ = this.rickMortyService.getCharactersByPage(page);
-    }
   }
 
   private getAllCharactersData(): void {
